@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saint Latte Inventario</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-blur blur-1"></div>
+  <div class="bg-blur blur-2"></div>
+
+  <div class="shell">
+    <div class="auth-modal-overlay" id="authModal">
+  <div class="auth-modal glass">
+    <div class="auth-modal-header">
+      <div>
+        <p class="eyebrow">Acceso</p>
+        <h2 id="authTitle">Iniciar sesión</h2>
+        <p class="muted" id="authSubtitle">Ingresa para registrar movimientos y ver quién hizo qué.</p>
+      </div>
+    </div>
+
+    <form id="loginForm" class="auth-form auth-mode active">
+      <label>
+        Email
+        <input type="email" id="loginEmail" placeholder="correo@ejemplo.com" />
+      </label>
+
+      <label>
+        Contraseña
+        <input type="password" id="loginPassword" placeholder="******" />
+      </label>
+
+      <button type="submit" class="btn btn-primary full">Entrar</button>
+
+      <p class="auth-switch-text">
+        ¿No tienes cuenta?
+        <button type="button" class="auth-switch-btn" id="showSignupBtn">Crear usuario</button>
+      </p>
+    </form>
+
+    <form id="signupForm" class="auth-form auth-mode">
+      <label>
+        Nombre
+        <input type="text" id="signupName" placeholder="Ej. Aldo" />
+      </label>
+
+      <label>
+        Email
+        <input type="email" id="signupEmail" placeholder="correo@ejemplo.com" />
+      </label>
+
+      <label>
+        Contraseña
+        <input type="password" id="signupPassword" placeholder="******" />
+      </label>
+
+      <button type="submit" class="btn btn-primary full">Crear cuenta</button>
+
+      <p class="auth-switch-text">
+        ¿Ya tienes cuenta?
+        <button type="button" class="auth-switch-btn" id="showLoginBtn">Iniciar sesión</button>
+      </p>
+    </form>
+  </div>
+</div>
+    <header class="glass hero">
+      <div>
+        <p class="eyebrow">Sistema de inventario</p>
+        <h1>Jarrón Azul</h1>
+        <p class="hero-text">
+          Controla insumos, entradas, stock bajo y movimientos.
+        </p>
+      </div>
+      <div class="user-session-box">
+  <span id="userStatus">No has iniciado sesión</span>
+  <button class="btn btn-secondary" id="logoutBtn" style="display:none;">Cerrar sesión</button>
+</div>
+
+
+    </header>
+
+    <section class="stats">
+      <article class="glass stat-card">
+        <span class="stat-label">Insumos totales</span>
+        <strong class="stat-value" id="stat-total">0</strong>
+      </article>
+
+      <article class="glass stat-card">
+        <span class="stat-label">Stock bajo</span>
+        <strong class="stat-value warning" id="stat-low">0</strong>
+      </article>
+
+      <article class="glass stat-card">
+        <span class="stat-label">Movimientos hoy</span>
+        <strong class="stat-value" id="stat-movs">0</strong>
+      </article>
+
+      <article class="glass stat-card">
+        <span class="stat-label">Usuarios activos</span>
+        <strong class="stat-value success">1</strong>
+      </article>
+    </section>
+
+    <section class="grid-main">
+      <div class="glass panel">
+        <div class="panel-top">
+          <div>
+            <h2>Inventario</h2>
+            <p class="muted">Consulta rápida de insumos registrados</p>
+          </div>
+
+          <div class="panel-actions">
+            <input type="text" placeholder="Buscar insumo..." class="search" id="searchInput" />
+            <select class="filter" id="filterStatus">
+              <option value="todos">Todos</option>
+              <option value="bajo">Stock bajo</option>
+              <option value="activos">Activos</option>
+              <option value="agotados">Agotados</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+  <tr>
+    <th>Insumo</th>
+    <th>Presentación</th>
+    <th>Existencia</th>
+    <th>Mínimo</th>
+    <th>Estado</th>
+    <th>Acciones</th>
+  </tr>
+</thead>
+            <tbody id="inventoryTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <aside class="side-column">
+        <div class="glass panel form-card">
+          <h2>Agregar insumo</h2>
+          <p class="muted">Alta rápida de nuevos productos</p>
+
+          <form class="inventory-form" id="inventoryForm">
+            <label>
+              Nombre del insumo
+              <input type="text" id="nombre" placeholder="Ej. Café molido" />
+            </label>
+
+            <label>
+              Presentación
+              <input type="text" id="presentacion" placeholder="Ej. Bolsa 1 kg" />
+            </label>
+
+            <label>
+              Ingreso inicial
+              <input type="number" id="cantidad" placeholder="0" min="0" />
+            </label>
+
+            <label>
+              Stock mínimo
+              <input type="number" id="minimo" placeholder="5" min="0" />
+            </label>
+
+            <button type="submit" class="btn btn-primary full">Guardar insumo</button>
+          </form>
+        </div>
+
+        <div class="glass panel movements">
+          <h2>Movimientos recientes</h2>
+          <ul id="movementsList"></ul>
+        </div>
+      </aside>
+    </section>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
